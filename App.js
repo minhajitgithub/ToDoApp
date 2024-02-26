@@ -1,20 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import SplashScreen from './todo/SplashScreen/SplashScreen';
+import screen1 from './todo/SplashScreen/screen1';
+import Screen2 from './todo/SplashScreen/screen2';
+import LoginScreen from './todo/loginscreen/loginscreen';
+import RegisterScreen from './todo/loginscreen/registerscreen';
+import HomeScreen from './todo/dashboard/home';
+import BottomTab from './todo/Navigation/Bottomtab';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator headerMode="none" initialRouteName="Splash">
+         <Stack.Screen name="Splash" component={SplashScreen} />
+         <Stack.Screen name="screen1" component={screen1} />
+         <Stack.Screen name="screen2" component={Screen2} />
+         <Stack.Screen name="loginscreen" component={LoginScreen} />
+         <Stack.Screen name="registerscreen" component={RegisterScreen} />
+         <Stack.Screen name="home" component={BottomTab} />
+      
+        
+        
+        <Stack.Screen name="BottomTab" component={BottomTab} />
+       </Stack.Navigator>
+      
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
